@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Axel Asp">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>ToDo App</title>
+</head>
+<body class="container">
+    
+    <header class="header"> 
+        <div class="left">
+            <h3 id="tasks-completed">Tasks Completed: 10</h3>
+        </div>
+        <div class="center">
+            <h1 class="title">Todo List</h1>
+        </div>
+        <div class="right"></div>
+    </header>
+
+    <div class="main">
+        <form>
+            <input type="text" id="input-field" placeholder="New Task...">
+            <button type="submit" id="button-add">Add</button>
+        </form>
+        <h3 class="message" id="message"></h3>
+
+
+        <div class="todo-list">
+            <ul></ul>
+        </div>
+
+    </div>
+
+    <script src="/main.js"></script>
+</body>
+</html>

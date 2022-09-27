@@ -1,0 +1,137 @@
+:root {
+    --colorBackground: linear-gradient(to right, #070414, rgb(33, 33, 51), #29082e);
+    --colorHeader: rgba(255, 255, 255, .1);
+    --colorButton: rgba(255, 255, 255, .2);
+    --colorButtonHover: rgba(255, 255, 255, .3);
+    --colorButtonHover2: rgba(111, 235, 111, 0.7);
+    --colorChecked: rgba(111, 235, 111, 0.507);
+    --colorInput: rgba(0, 0, 0, .5);
+    --colorMessage: rgb(248, 74, 74);
+    --colorList: rgba(255, 255, 255, .1);
+    --borderRadius: 5px;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    background: var(--colorBackground);
+
+    width: 100vw;
+    height: 100vh;
+}
+
+* {
+    font-family: sans-serif;
+    color: white;
+}
+.header  {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
+    background-color: var(--colorHeader);
+}
+.left {
+    padding-left: 15px;
+    text-align: left;
+    flex: 1;
+}
+.center {
+    text-align: center;
+    flex: 1;
+}
+.right {
+    text-align: right;
+    flex: 1;
+}
+
+.main {
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 25px;
+    border-radius: var(--borderRadius);
+}
+form input {
+    width: 50%;
+    height: 40px;
+}
+form button {
+    font-size: 1.5rem;
+    width: 80px;
+    height: 40px;
+    background-color: var(--colorButton);
+}
+form button:hover {
+    background-color: var(--colorButtonHover);
+}
+.message {
+    height: 10px;
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--colorMessage);
+}
+
+
+
+input {
+    font-size: 1.5rem;
+    border: none;
+    border-radius: var(--borderRadius);
+    background-color: var(--colorInput);
+}
+button {
+    font-size: 2rem;
+    margin: 8px;
+    border: none;
+    outline: 0;
+    text-align: center;
+    cursor: pointer;
+    border-radius: var(--borderRadius);
+    background-color: var(--colorBackground);
+}
+
+button i {
+    pointer-events: none;
+    color: var(--colorButton);
+}
+button:hover i {
+    color: var(--colorButtonHover);
+}
+#button-check:hover i {
+    color: var(--colorButtonHover) !important;
+}
+
+
+.todo-list {
+    font-size: 1.5rem;
+    padding: 15%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+li {
+    display: flex;
+    align-items: center;
+    
+    padding: 10px;
+    margin: 5px;
+    border-radius: var(--borderRadius);
+    background-color: var(--colorList);
+}
+.todo-item {
+    flex: 1;
+}
