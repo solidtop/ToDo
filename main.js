@@ -1,4 +1,4 @@
-const todoList = [];
+const todoArray= [];
 let tasksCompleted = 0;
 
 //Handle submit event
@@ -41,11 +41,12 @@ function addTodo(todo) {
     li.classList.add('todo-list-item');
     ul.appendChild(li);
 
-    todoList.push({
+    todoArray.push({
         item: li, //Store all item HTML elements
         checked: false, //Keeping track of checking/completing
     });
     console.log('Todo Added');
+    console.log(todoArray);
 }
 function deleteTodo(e) {
 
@@ -54,12 +55,13 @@ function deleteTodo(e) {
     const index = listItems.indexOf(item); //Get array index of the item
     item.remove(); //remove item element from html document
     
-    if (todoList[index].checked) { //Update tasksCompleted if item is checked when removed
+    if (todoArray[index].checked) { //Update tasksCompleted if item is checked when removed
         updateDisplay(--tasksCompleted);
     }
-    todoList.splice(index, 1); //Then finally remove/splice index from todo array 
+    todoArray.splice(index, 1); //Then finally remove/splice index from todo array 
     
     console.log('Todo Deleted');
+    console.log(todoArray);
 }
 function checkTodo(e) {
 
@@ -67,16 +69,17 @@ function checkTodo(e) {
 
     const listItems = Array.from(document.querySelectorAll('li'));
     const index = listItems.indexOf(item);
-    if (todoList[index].checked) {
+    if (todoArray[index].checked) {
 
-        todoList[index].checked = false;
+        todoArray[index].checked = false;
         item.classList.remove('checked'); //Remove class element from html document
         updateDisplay(--tasksCompleted);
+        
         console.log('Checked');
 
     } else {
         
-        todoList[index].checked = true;
+        todoArray[index].checked = true;
         item.classList.add('checked'); //Add class element so we can style in CSS
         updateDisplay(++tasksCompleted);
 
