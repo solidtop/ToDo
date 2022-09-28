@@ -72,17 +72,21 @@ function checkTodo(e) {
         todoList[index].checked = false;
         item.classList.remove('checked'); //Remove class element from html document
         updateDisplay(--tasksCompleted);
+        console.log('Checked');
+
     } else {
         
         todoList[index].checked = true;
         item.classList.add('checked'); //Add class element so we can style in CSS
         updateDisplay(++tasksCompleted);
+
+        console.log('Checked');
     }
 }
 
 function updateDisplay(tasks) {
     const display = document.querySelector('#tasks-completed');
-    display.innerHTML = 'Tasks Completed: ' + tasks;
+    display.innerHTML = 'Completed: ' + tasks;
 }
 
 function showMessage(text) {
