@@ -1,14 +1,15 @@
 :root {
-    --colorBackground: linear-gradient(to right, #070414, rgb(33, 33, 51), #29082e);
+    --colorBackground: linear-gradient(to right, #2e264e,#4f3053);
     --colorHeader: rgba(255, 255, 255, .1);
     --colorButton: rgba(255, 255, 255, .2);
     --colorButtonHover: rgba(255, 255, 255, .3);
     --colorButtonHover2: rgba(111, 235, 111, 0.7);
     --colorChecked: rgba(111, 235, 111, 0.507);
+    --colorCheckedHover: rgba(111, 235, 111, 0.6);
     --colorInput: rgba(0, 0, 0, .5);
     --colorMessage: rgb(248, 74, 74);
     --colorList: rgba(255, 255, 255, .1);
-    --borderRadius: 5px;
+    --borderRadius: 10px;
 }
 
 .container {
@@ -18,6 +19,7 @@
 
     width: 100vw;
     height: 100vh;
+    font-size: 20px;
 }
 
 * {
@@ -73,7 +75,7 @@ form button:hover {
 .message {
     height: 10px;
     margin: 0;
-    padding: 5px;
+    padding-top: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,9 +108,7 @@ button i {
 button:hover i {
     color: var(--colorButtonHover);
 }
-#button-check:hover i {
-    color: var(--colorButtonHover) !important;
-}
+
 
 
 .todo-list {
@@ -132,6 +132,18 @@ li {
     border-radius: var(--borderRadius);
     background-color: var(--colorList);
 }
+li span {
+    overflow: hidden;
+}
 .todo-item {
     flex: 1;
+}
+.checked {
+    text-decoration: line-through white solid 4px;
+}
+.checked .button-check i {
+    color: var(--colorChecked);
+}
+.checked .button-check:hover i {
+    color: var(--colorCheckedHover);
 }
