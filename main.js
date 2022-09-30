@@ -43,10 +43,8 @@ function addTodo(todo) {
 
     todoArray.push({
         item: li, //Store all item HTML elements
-        checked: false, //Keeping track of checking/completing
+        isChecked: false, //Keeping track of checking/completing
     });
-    console.log('Todo Added');
-    console.log(todoArray);
 }
 function deleteTodo(e) {
 
@@ -55,13 +53,11 @@ function deleteTodo(e) {
     const index = listItems.indexOf(item); //Get array index of the item
     item.remove(); //remove item element from html document
     
-    if (todoArray[index].checked) { //Update tasksCompleted if item is checked when removed
+    if (todoArray[index].isChecked) { //Update tasksCompleted if item is checked when removed
         updateDisplay(--tasksCompleted);
     }
     todoArray.splice(index, 1); //Then finally remove/splice index from todo array 
     
-    console.log('Todo Deleted');
-    console.log(todoArray);
 }
 function checkTodo(e) {
 
@@ -69,21 +65,16 @@ function checkTodo(e) {
 
     const listItems = Array.from(document.querySelectorAll('li'));
     const index = listItems.indexOf(item);
-    if (todoArray[index].checked) {
+    if (todoArray[index].isChecked) {
 
-        todoArray[index].checked = false;
+        todoArray[index].isChecked = false;
         item.classList.remove('checked'); //Remove class element from html document
         updateDisplay(--tasksCompleted);
-        
-        console.log('Checked');
-
     } else {
         
-        todoArray[index].checked = true;
+        todoArray[index].isChecked = true;
         item.classList.add('checked'); //Add class element so we can style in CSS
         updateDisplay(++tasksCompleted);
-
-        console.log('Checked');
     }
 }
 
