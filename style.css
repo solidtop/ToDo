@@ -1,100 +1,118 @@
 :root {
-    --colorBackground: linear-gradient(to right, #2e264e,#4f3053);
-    --colorHeader: rgba(255, 255, 255, .1);
-    --colorButton: rgba(255, 255, 255, .2);
-    --colorButtonHover: rgba(255, 255, 255, .3);
-    --colorButtonHover2: rgba(111, 235, 111, 0.7);
-    --colorChecked: rgba(111, 235, 111, 0.507);
-    --colorCheckedHover: rgba(111, 235, 111, 0.6);
-    --colorInput: rgba(0, 0, 0, .5);
-    --colorMessage: rgb(248, 74, 74);
+    font-size: 20px;
+
+    --colorBackground: linear-gradient(to right, #213246, #2a475e);
+    --colorBackground2:rgba(0, 0, 0, .1); 
+    --colorHeader: #1b2838;
+    --colorButton: rgba(255, 255, 255, .3);
+    --colorButtonHover: rgba(255, 255, 255, .5);
+    --colorButtonHover2: rgb(218, 98, 98);
+    --colorChecked: #49b16c;
+    --colorCheckedHover: #5dda86;
+    --colorInput: rgba(255, 255, 255, .1);
+    --colorInputFocus: rgba(255, 255, 255, .1);
+    --colorMessage: rgb(253, 97, 97);
     --colorList: rgba(255, 255, 255, .1);
-    --borderRadius: 10px;
+    --colorFont: #c7d5e0;
+
+    --border: 2px solid rgba(255, 255, 255, .1);
+    --borderRadius: 5px;
+
+    --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-.container {
+body {
     margin: 0;
     padding: 0;
-    background: var(--colorBackground);
 
+    background: var(--colorBackground);
     width: 100vw;
     height: 100vh;
-    font-size: 20px;
     display: flex;
     flex-direction: column;
 }
 
 * {
     font-family: sans-serif;
-    color: white;
+    color: var(--colorFont);
 }
-.header  {
+
+header  {
+    width: 100%;
+    height: 80px;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 
-    box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow);
     background-color: var(--colorHeader);
 }
-.left {
-    padding-left: 15px;
-    text-align: left;
-    flex: 1;
-}
-.center {
+
+.start, .center, .end {
+    display: flex;
+    align-items: center;
     text-align: center;
-    flex: 1;
-}
-.right {
-    text-align: right;
-    flex: 1;
 }
 
-.main {
+main {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    background-color: rgba(0, 0, 0, .1);
+
 }
 
 form {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 25px;
+    margin-top: 25px;
+
+    border: var(--border);
+    border-style: solid none none;
     border-radius: var(--borderRadius);
+    background-color: var(--colorInput);
 }
 form input {
     width: 500px;
-    height: 40px;
+    height: 100%;
 }
 form button {
     font-size: 1.5rem;
-    width: 80px;
+    width: 40px;
     height: 40px;
-    background-color: var(--colorButton);
+    background: 0;
 }
-form button:hover {
-    background-color: var(--colorButtonHover);
+form button i {
+    font-size: 2rem;
 }
+
 .message {
-    height: 10px;
-    margin: 0;
-    padding-top: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-end;
+
+    margin: 0;
+    padding: 20px;
+   
     color: var(--colorMessage);
 }
 
 
 
 input {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-left: 10px;
     border: none;
     border-radius: var(--borderRadius);
-    background-color: var(--colorInput);
+    background: none;
+}
+input:focus {
+    outline: none;
+    background-color: var(--colorInputFocus);
 }
 button {
     font-size: 2rem;
@@ -107,23 +125,40 @@ button {
     background-color: var(--colorBackground);
 }
 
-button i {
-    pointer-events: none;
-    color: var(--colorButton);
-}
 button:hover i {
     color: var(--colorButtonHover);
 }
+.button-delete:hover i {
+    color: var(--colorButtonHover2);
+}
+
+i {
+    font-size: 1em;
+    pointer-events: none;
+    color: var(--colorButton);
+}
+
 
 
 
 .todo-list {
-    font-size: 1.5rem;
-    padding: 15%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 10px;
     width: 500px;
+    height: 100%;
+
+    font-size: 1.2rem;
+    padding: 40px;
+
+    border: var(--border);
+    border-style: none solid none;
+    border-radius: var(--borderRadius);
+    background-color: var(--colorBackground2);
+}
+
+.tasks-completed {
+    font-size: 1rem;
+    border: var(--border);
+    border-radius: var(--borderRadius);
+    border-style: none none solid;
 }
 
 ul {
@@ -134,8 +169,10 @@ li {
     display: flex;
     align-items: center;
     
-    padding: 10px;
+    padding-left: 10px;
     margin: 5px;
+    border: var(--border);
+    border-style: solid none none;
     border-radius: var(--borderRadius);
     background-color: var(--colorList);
 }
@@ -145,12 +182,12 @@ li span {
 .todo-item {
     flex: 1;
 }
-.checked {
-    text-decoration: line-through white solid 4px;
+.completed {
+    text-decoration: line-through white solid 3px;
 }
-.checked .button-check i {
+.completed .button-check i {
     color: var(--colorChecked);
 }
-.checked .button-check:hover i {
+.completed .button-check:hover i {
     color: var(--colorCheckedHover);
 }
