@@ -1,3 +1,5 @@
+loadTheme();
+
 let todoArray = [];
 let tasksCompleted = 0;
 
@@ -27,6 +29,8 @@ document.querySelector('ul').addEventListener('click', e => {
         deleteTodo(e);
     }
 });
+
+document.querySelector('#button-clear').addEventListener('click', clearAll);
 
 
 function addTodo(todo, addToArray = true) {
@@ -85,6 +89,17 @@ function completeTodo(e) {
     }
     saveTodo();
 }
+function clearAll() {
+    if (todoArray.length > 0) {
+        const ul = document.querySelector('ul');
+        ul.replaceChildren();
+
+        updateDisplay(0);
+        todoArray = [];
+        saveTodo();
+    }
+}
+
 
 function saveTodo() {
     localStorage.setItem('todo', JSON.stringify(todoArray));
@@ -121,4 +136,29 @@ function showMessage(text) {
 function clearMessage() {
     const message = document.querySelector('#message');
     message.innerHTML = '';   
+}
+
+
+
+document.querySelector('#switch-theme').addEventListener('change', switchTheme);
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+
+}
+function loadTheme() {
+    const theme = localStorage.getItem('theme');
+    document.documentElement.setAttribute('data-theme', theme);
+
+    if (theme === 'light') {
+        document.querySelector('#switch-theme').checked = true;
+    } else {
+        document.querySelector('#switch-theme').checked = false;
+    }
 }

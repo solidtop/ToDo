@@ -7,7 +7,7 @@
     --colorButton: rgba(255, 255, 255, .3);
     --colorButtonHover: rgba(255, 255, 255, .5);
     --colorButtonHover2: rgb(218, 98, 98);
-    --colorChecked: #49b16c;
+    --colorChecked: #19af4b;
     --colorCheckedHover: #5dda86;
     --colorInput: rgba(255, 255, 255, .1);
     --colorInputFocus: rgba(255, 255, 255, .1);
@@ -20,6 +20,27 @@
 
     --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+[data-theme="light"] {
+    --colorBackground: linear-gradient(to left, #CDFCF6, #98A8F8);
+    --colorBackground2: rgba(255, 255, 255, .2);
+    --colorHeader: #BCCEF8;
+    --colorButton: rgba(0, 0, 0, .2);
+    --colorButtonHover: rgba(0, 0, 0, .5);
+    --colorButtonHover2: rgb(255, 142, 142);
+    --colorChecked: #43bd6c;
+    --colorCheckedHover: #69c989;
+    --colorInput: rgba(255, 255, 255, .3);
+    --colorInputFocus: rgba(255, 255, 255, .35);
+    --colorMessage: rgb(255, 85, 85);
+    --colorList: rgba(255, 255, 255, .3);
+    --colorFont: rgb(71, 71, 71);
+
+    --border: 2px solid rgba(255, 255, 255, 0.2);
+    --borderRadius: 5px;
+
+    --shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
 
 body {
     margin: 0;
@@ -49,9 +70,17 @@ header  {
 }
 
 .start, .center, .end {
+    flex: 1;
     display: flex;
     align-items: center;
+}
+.center {
+    justify-content: center;
     text-align: center;
+}
+.end {
+    justify-content: flex-end;
+    text-align: right;
 }
 
 main {
@@ -132,12 +161,23 @@ button:hover i {
     color: var(--colorButtonHover2);
 }
 
+.button-clear {
+    width: 75px;
+    height: 30px;
+
+    margin: 0;
+    font-size: .8rem;
+    background-color: var(--colorButton);
+}
+.button-clear:hover {
+    background-color: var(--colorButtonHover2);   
+}
+
 i {
     font-size: 1em;
     pointer-events: none;
     color: var(--colorButton);
 }
-
 
 
 
@@ -147,18 +187,25 @@ i {
 
     font-size: 1.2rem;
     padding: 40px;
+    margin-bottom: 20px;
 
     border: var(--border);
     border-style: none solid none;
     border-radius: var(--borderRadius);
     background-color: var(--colorBackground2);
 }
+.todo-list .start {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-.tasks-completed {
-    font-size: 1rem;
     border: var(--border);
     border-radius: var(--borderRadius);
     border-style: none none solid;
+}
+
+.tasks-completed {
+    font-size: 1rem;
 }
 
 ul {
@@ -183,7 +230,7 @@ li span {
     flex: 1;
 }
 .completed {
-    text-decoration: line-through white solid 3px;
+    text-decoration: line-through var(--colorFont) solid 3px;
 }
 .completed .button-check i {
     color: var(--colorChecked);
@@ -191,3 +238,59 @@ li span {
 .completed .button-check:hover i {
     color: var(--colorCheckedHover);
 }
+
+
+/*Switch Themes */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: 30px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--colorButton);
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--colorFont);
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+input:checked + .slider {
+    background-color: var(--colorChecked);
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+}
+.slider.round {
+    border-radius: 30px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
