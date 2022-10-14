@@ -66,8 +66,7 @@ function addTodo(todo, addToArray = true) {
 function deleteTodo(e) {
 
     const item = e.target.parentNode; //Get <li> item from clicked button
-    const listItems = Array.from(document.querySelectorAll('li')); //Get NodeList for <li> (item) elements and convert it to Array
-    const index = listItems.indexOf(item); //Get array index of the item
+    const index = getIndexFromList(item); //Get array index of the item
     item.classList.add('remove-item');
     setTimeout(() => {
         item.remove(); //remove item element from html document
