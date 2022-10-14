@@ -47,11 +47,12 @@ function addTodo(todo, addToArray = true) {
     li.classList.add('todo-list-item');
     ul.appendChild(li);
 
+    setTimeout(() => {
+        li.classList.remove('add-item');
+    }, 200);
+
     if (addToArray) {
         li.classList.add('add-item'); //Add class so we can animate in CSS 
-        setTimeout(() => {
-            li.classList.remove('add-item');
-        }, 200);
 
         todoArray.push({
             text: todo, //Store todo string
