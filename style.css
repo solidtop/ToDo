@@ -261,7 +261,7 @@ li i {
 }
 
 .add-item {
-    animation: fade-in var(--animationSpeed) ease-in forwards;
+    animation: fade-in var(--animationSpeed) ease-in;
 }
 
 .remove-item {

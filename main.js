@@ -47,16 +47,12 @@ function addTodo(todo, addToArray = true) {
     li.classList.add('todo-list-item');
     ul.appendChild(li);
 
-    //Add class so we can animate in CSS (delete it after so animation wont repeat in future)
-    li.classList.add('add-item');
-    setTimeout(function() {
-        li.classList.remove('add-item'); 
-    }, 1000);
-
-   
     if (addToArray) {
+         //Add class so we can animate in CSS
+        li.classList.add('add-item');
+
         todoArray.push({
-            todo: todo, //Store todo string
+            text: todo, //Store todo string
             isCompleted: false, //Keeping track of completing
         });
         saveTodo();
@@ -70,7 +66,7 @@ function deleteTodo(e) {
     const listItems = Array.from(document.querySelectorAll('li')); //Get NodeList for <li> (item) elements and convert it to Array
     const index = listItems.indexOf(item); //Get array index of the item
     item.classList.add('remove-item');
-    setTimeout(function() {
+    setTimeout(() => {
         item.remove(); //remove item element from html document
     }, 100);
 
@@ -100,11 +96,11 @@ function completeTodo(e) {
 }
 function clearAll() {
     if (todoArray.length > 0) {
-        const ul = document.querySelector('ul').childNodes;
-        ul.forEach(li => {
+        const ul = document.querySelector('ul');
+        ul.childNodes.forEach(li => {
             li.classList.add('remove-item');
         });
-        setTimeout(function() {
+        setTimeout(() => {
             ul.replaceChildren(); //remove items from ul
         }, 100);
 
@@ -125,7 +121,7 @@ function loadTodo() {
 
     todoArray = JSON.parse(jsonStr);
     todoArray.forEach(todo => {
-        let item = addTodo(todo.todo, false); 
+        let item = addTodo(todo.text, false); 
         if (todo.isCompleted) {
             item.classList.add('completed'); 
             updateDisplay(++tasksCompleted);  
