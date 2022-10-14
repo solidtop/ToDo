@@ -47,6 +47,12 @@ function addTodo(todo, addToArray = true) {
     li.classList.add('todo-list-item');
     ul.appendChild(li);
 
+    //Add class so we can animate in CSS (delete it after so animation wont repeat in future)
+    li.classList.add('add-item');
+    setTimeout(function() {
+        li.classList.remove('add-item'); 
+    }, 1000);
+
    
     if (addToArray) {
         todoArray.push({
@@ -63,8 +69,11 @@ function deleteTodo(e) {
     const item = e.target.parentNode; //Get <li> item from clicked button
     const listItems = Array.from(document.querySelectorAll('li')); //Get NodeList for <li> (item) elements and convert it to Array
     const index = listItems.indexOf(item); //Get array index of the item
-    item.remove(); //remove item element from html document
-    
+    item.classList.add('remove-item');
+    setTimeout(function() {
+        item.remove(); //remove item element from html document
+    }, 100);
+
     if (todoArray[index].isCompleted) { //Update tasksCompleted if item is checked when removed
         updateDisplay(--tasksCompleted);
     }
@@ -91,9 +100,15 @@ function completeTodo(e) {
 }
 function clearAll() {
     if (todoArray.length > 0) {
-        const ul = document.querySelector('ul');
-        ul.replaceChildren();
+        const ul = document.querySelector('ul').childNodes;
+        ul.forEach(li => {
+            li.classList.add('remove-item');
+        });
+        setTimeout(function() {
+            ul.replaceChildren(); //remove items from ul
+        }, 100);
 
+        tasksCompleted = 0;
         updateDisplay(0);
         todoArray = [];
         saveTodo();
@@ -112,7 +127,6 @@ function loadTodo() {
     todoArray.forEach(todo => {
         let item = addTodo(todo.todo, false); 
         if (todo.isCompleted) {
-            const index = getIndexFromList(item);
             item.classList.add('completed'); 
             updateDisplay(++tasksCompleted);  
         }
