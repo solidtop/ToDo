@@ -20,6 +20,7 @@
 
     --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 
+    --animationSpeedStartup: .5s;
     --animationSpeed: .1s;
     --animationSpeedHover: .1s;
     --animationSpeedActive: .1s;
@@ -75,6 +76,9 @@ header  {
     box-shadow: var(--shadow);
     background-color: var(--colorHeader);
 }
+header h1 {
+    animation: anim-popoutin 1s;
+}
 
 .start, .center, .end {
     flex: 1;
@@ -110,6 +114,8 @@ form {
     border-style: solid none none;
     border-radius: var(--borderRadius);
     background-color: var(--colorInput);
+
+    animation: scale-in var(--animationSpeedStartup);
 }
 form input {
     width: 500px;
@@ -133,8 +139,6 @@ form button i {
     padding: 10px;
     color: var(--colorMessage);
 }
-
-
 
 input {
     font-size: 1.2rem;
@@ -216,6 +220,8 @@ i {
     border-style: none solid none;
     border-radius: var(--borderRadius);
     background-color: var(--colorBackground2);
+
+    animation: slide-up var(--animationSpeedStartup) ease-out; 
 }
 .todo-list .start {
     display: flex;
@@ -299,6 +305,8 @@ li i {
     width: 60px;
     height: 34px;
     margin: 30px;
+
+    animation: scale-in .5s;
 }
 .switch input {
     opacity: 0;
@@ -352,10 +360,12 @@ input:checked + .slider:before {
 }
 @keyframes scale-in {
     0% {
-        scale: .7;
+        opacity: 0;
+        transform: scale(.7);
     }
     100% {
-        scale: 1;
+        opacity: 1;
+        transform: scale(1);
     }
 }
 @keyframes color-shift {
@@ -367,5 +377,46 @@ input:checked + .slider:before {
     }
     100% {
         background-color: auto;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes slide-down {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes anim-popoutin {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    25% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        /* animate nothing to add pause at the end of animation */
+        transform: scale(1);
+        opacity: 1;
     }
 }
