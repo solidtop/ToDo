@@ -10,11 +10,21 @@ const form = document.querySelector('form');
 form.addEventListener('submit', e => {
     e.preventDefault();
 
+    
     const input = document.querySelector('#input-field');
     if (!input.value) { //Exit early with message if input.value is falsey/empty
         showMessage('Please enter a task!');
         return;
     }
+    if (!input.value.match(/^[a-öA-Ö0-9?!., ]+$/i)) {
+        showMessage('Invalid task!');
+        return;
+    }
+    if (input.value.length > 50) {
+        showMessage('Too many characters!');
+        return;
+    }
+   
 
     addTodo(input.value);
     input.value = ''; //clear input field
@@ -142,12 +152,14 @@ function updateDisplay(tasks) {
 }
 
 function showMessage(text) {
-    const message = document.querySelector('#message');
+    const message = document.querySelector('.message');
     message.innerHTML = text;
+    message.classList.add('show-message');
 }
 function clearMessage() {
-    const message = document.querySelector('#message');
+    const message = document.querySelector('.message');
     message.innerHTML = '';   
+    message.classList.remove('show-message');
 }
 
 

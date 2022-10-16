@@ -138,6 +138,12 @@ form button i {
 
     padding: 10px;
     color: var(--colorMessage);
+    height: 0;
+    transition: height .2s
+}
+.show-message {
+    animation: scale-in .3s;
+    height: 50px;
 }
 
 input {
